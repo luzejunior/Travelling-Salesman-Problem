@@ -26,6 +26,9 @@ SOFTWARE.
 
 */
 
+#ifndef GRAPH_H
+#define GRAPH_H
+
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -42,3 +45,5 @@ class Graph{
     int findNodeOnVector(Node*);
     int getNodeByName(string);
 };
+
+#endif

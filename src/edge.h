@@ -26,6 +26,9 @@ SOFTWARE.
 
 */
 
+#ifndef EDGE_H
+#define EDGE_H
+
 #include <iostream>
 
 class Node;
@@ -37,3 +40,5 @@ public:
   Node* nextNode;
   void configEdge(int, Node*);
 };
+
+#endif

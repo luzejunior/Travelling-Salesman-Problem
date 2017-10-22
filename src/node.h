@@ -26,6 +26,9 @@ SOFTWARE.
 
 */
 
+#ifndef NODE_H
+#define NODE_H
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -42,3 +45,5 @@ class Node{
     void createEdge(int, Node*);
     void createNode(int value);
   };
+
+  #endif
