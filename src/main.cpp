@@ -1,12 +1,14 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "Graph/graph.h"
+#include "graph.h"
+#include "salesMan.h"
 
 using namespace std;
 
 int main(int argc, char* argv[]){
   Graph g1;
+  SalesMan* s1 = new SalesMan(&g1);
 
   //Use archive input to create graph
   ifstream file("Samples/dij10.txt");
@@ -35,6 +37,10 @@ int main(int argc, char* argv[]){
     columnCounter++;
     lineCounter++;
   }
+
+  s1->startedNodeIndex = 0;
+  vector<int> vector;
+  cout << "The value is: " << s1->executeAlgorihm(4, vector) << endl;
 
   return 0;
 }
