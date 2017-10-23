@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
   Graph* g1 = new Graph();
 
   //Use archive input to create graph
-  ifstream file("samples/dij15.txt");
+  ifstream file("samples/pcv10.txt");
   string line;
   getline(file, line);
   stringstream ss(line);
@@ -51,17 +51,15 @@ int main(int argc, char* argv[]){
   }
 
   int lineCounter = 0;
-  int columnCounter = 1;
+  int columnCounter = 0;
   while(getline(file, line)){
     int value;
-    int auxiliaryColumnCounter = columnCounter;
+    columnCounter = 0;
     stringstream ss1(line);
     while(ss1 >> value){
-      g1->nodeVector[lineCounter]->createEdge(value, g1->nodeVector[auxiliaryColumnCounter]);
-      g1->nodeVector[auxiliaryColumnCounter]->createEdge(value, g1->nodeVector[lineCounter]);
-      auxiliaryColumnCounter++;
+        g1->nodeVector[lineCounter]->createEdge(value, g1->nodeVector[columnCounter]);
+      columnCounter++;
     }
-    columnCounter++;
     lineCounter++;
   }
 
