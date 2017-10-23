@@ -10,7 +10,7 @@ int main(int argc, char* argv[]){
   Graph* g1 = new Graph();
 
   //Use archive input to create graph
-  ifstream file("samples/dij10.txt");
+  ifstream file("samples/dij15.txt");
   string line;
   getline(file, line);
   stringstream ss(line);
@@ -39,11 +39,12 @@ int main(int argc, char* argv[]){
 
   SalesMan* s1 = new SalesMan(g1);
 
-  s1->startedNodeIndex = 0;
-  vector<int> vector;
-  int j = 1;
-  cout << "name: " << s1->graph->nodeVector[0]->name << " value: " << s1->graph->nodeVector[0]->vVector[j].value << " going to name: " << s1->graph->nodeVector[0]->vVector[j].nextNode->name << endl;
-  cout << "The value is: " << s1->executeAlgorihm(1, vector) << endl;
+  //s1->startedNodeIndex = 0;
+  //vector<int> vector;
+  //int j = 1;
+  //cout << "name: " << s1->graph->nodeVector[0]->name << " value: " << s1->graph->nodeVector[0]->vVector[j].value << " going to name: " << s1->graph->nodeVector[0]->vVector[j].nextNode->name << endl;
+  s1->startAlgorithm(0);
+  cout << "The value is: " << s1->minorPath << endl;
 
   return 0;
 }

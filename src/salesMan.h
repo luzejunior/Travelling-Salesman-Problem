@@ -40,11 +40,13 @@ public:
   Graph* graph;
   vector<int> bestPath;
   int startedNodeIndex;
+  int minorPath;
   SalesMan(Graph*);
   int calculateMin(vector<int>);
   int executeAlgorihm(int, vector<int>);
   void startAlgorithm(int);
   void copyVectors(vector<int>, vector<int>*, int);
+  void printVector(vector<int>);
 };
 
 #endif

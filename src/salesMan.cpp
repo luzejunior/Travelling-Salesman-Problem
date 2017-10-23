@@ -32,6 +32,15 @@ SalesMan::SalesMan(Graph* graph){
   this->graph = graph;
 }
 
+void SalesMan::printVector(vector<int> values){
+  if (values.size() != 0){
+    for(int i = 0; i < values.size(); i++){
+      cout << "[" << values[i] << "]";
+    }
+    cout << endl;
+  }
+}
+
 int SalesMan::calculateMin(vector<int> values){
   int minorValue = 999999999;
   for(int i = 0; i < values.size(); i++){
@@ -43,13 +52,12 @@ int SalesMan::calculateMin(vector<int> values){
 
 void SalesMan::copyVectors(vector<int> v1, vector<int>* v2, int value){
   for (int i = 0; i < v1.size(); i++){
-    if(v1[i] != value)
+    if(v1[i] != v1[value])
       (*v2).push_back(v1[i]);
   }
 }
 
 int SalesMan::executeAlgorihm(int nodeIndex, vector<int> nextNodesIndex){
-  vector<int> *NextNodeMinusOne;
   vector<int> distances;
   int minorLocalPath = 0;
 
@@ -58,8 +66,12 @@ int SalesMan::executeAlgorihm(int nodeIndex, vector<int> nextNodesIndex){
   }
 
   for(int i = 0; i < nextNodesIndex.size(); i++){
-    copyVectors(nextNodesIndex, NextNodeMinusOne, i);
-    distances.push_back(executeAlgorihm(nextNodesIndex[i], *NextNodeMinusOne));
+    vector<int> NextNodeMinusOne;
+    cout << this->graph->nodeVector[nodeIndex]->vVector[i].value << endl;
+    int distance = this->graph->nodeVector[nodeIndex]->vVector[i].value;
+    copyVectors(nextNodesIndex, &NextNodeMinusOne, i);
+    printVector(NextNodeMinusOne);
+    distances.push_back(distance + executeAlgorihm(nextNodesIndex[i], NextNodeMinusOne));
   }
 
   return minorLocalPath + calculateMin(distances);
@@ -72,5 +84,6 @@ void SalesMan::startAlgorithm(int starting_with){
     if(starting_with != i)
       indexes.push_back(i);
   }
-  int minorPath = executeAlgorihm(this->startedNodeIndex, indexes);
+  printVector(indexes);
+  minorPath = executeAlgorihm(this->startedNodeIndex, indexes);
 }
