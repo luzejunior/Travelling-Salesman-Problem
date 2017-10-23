@@ -41,21 +41,36 @@ int SalesMan::calculateMin(vector<int> values){
   return minorValue;
 }
 
+void SalesMan::copyVectors(vector<int> v1, vector<int>* v2, int value){
+  for (int i = 0; i < v1.size(); i++){
+    if(v1[i] != value)
+      (*v2).push_back(v1[i]);
+  }
+}
+
 int SalesMan::executeAlgorihm(int nodeIndex, vector<int> nextNodesIndex){
-  vector<int> pathValues;
+  vector<int> *NextNodeMinusOne;
+  vector<int> distances;
+  int minorLocalPath = 0;
+
   if(nextNodesIndex.size() == 0){
-    return this->graph->nodeVector[nodeIndex]->vVector[this->startedNodeIndex].value;
+    return this->graph->nodeVector[this->startedNodeIndex]->vVector[nodeIndex].value;
   }
+
   for(int i = 0; i < nextNodesIndex.size(); i++){
-    
+    copyVectors(nextNodesIndex, NextNodeMinusOne, i);
+    distances.push_back(executeAlgorihm(nextNodesIndex[i], *NextNodeMinusOne));
   }
+
+  return minorLocalPath + calculateMin(distances);
 }
 
 void SalesMan::startAlgorithm(int starting_with){
   vector<int> indexes;
   this->startedNodeIndex = starting_with;
   for (int i = 0; i < this->graph->nodeVector.size(); i++){
-    indexes.push_back(i);
+    if(starting_with != i)
+      indexes.push_back(i);
   }
   int minorPath = executeAlgorihm(this->startedNodeIndex, indexes);
 }

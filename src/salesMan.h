@@ -44,6 +44,7 @@ public:
   int calculateMin(vector<int>);
   int executeAlgorihm(int, vector<int>);
   void startAlgorithm(int);
+  void copyVectors(vector<int>, vector<int>*, int);
 };
 
 #endif

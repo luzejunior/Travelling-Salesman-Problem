@@ -3,8 +3,8 @@ FLAGS = -std=c++11
 
 .PHONY: prim dijkstra
 
-program: src/*.cpp Makefile
-	$(CC) $(FLAGS) src/*.cpp -o program
+program: main.cpp src/*.cpp Makefile
+	$(CC) $(FLAGS) main.cpp src/*.cpp -o program
 
 run:
 	./program
